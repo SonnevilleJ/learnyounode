@@ -1,5 +1,8 @@
-var myModule = require('./myModule');
+var http = require('http');
 
-myModule(process.argv[2], process.argv[3], function (err, data) {
-    console.log(data.join('\n'));
+http.get(process.argv[2], function (response) {
+    response.setEncoding('utf8');
+    response.on('data', function(data){
+        console.log(data);
+    });
 });
