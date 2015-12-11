@@ -1,7 +1,11 @@
 var fs = require('fs');
+var path = require('path');
 
-fs.readFile(process.argv[2], 'utf8', function (err, data) {
+fs.readdir(process.argv[2], function (err, files) {
     if (err) throw err;
-    var count = data.toString().split('\n').length - 1;
-    console.log(count);
+
+    var filesWithExtension = files.filter(function (filename) {
+        return path.extname(filename) === "." + process.argv[3];
+    });
+    console.log(filesWithExtension.join('\n'));
 });
