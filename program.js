@@ -1,11 +1,5 @@
-var fs = require('fs');
-var path = require('path');
+var myModule = require('./myModule');
 
-fs.readdir(process.argv[2], function (err, files) {
-    if (err) throw err;
-
-    var filesWithExtension = files.filter(function (filename) {
-        return path.extname(filename) === "." + process.argv[3];
-    });
-    console.log(filesWithExtension.join('\n'));
+myModule(process.argv[2], process.argv[3], function (err, data) {
+    console.log(data.join('\n'));
 });
